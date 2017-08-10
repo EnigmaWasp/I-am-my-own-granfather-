@@ -1,0 +1,27 @@
+
+
+
+
+I married a widow who has an adult daughter. My father, who very often visited us, fell in love with my stepdaughter and married her. Therefore, my father became my son-in-law, and my stepdaughter became my stepmother. A few months later, my wife gave birth to a son who became a brother-in-law (son-in-law) to my father, and therefore my uncle. My father's wife, i.e. My stepdaughter, also gave birth to a       son.
+I am my own granfather?
+
+
+Solution:
+% rules
+father_in_law(X,Y):-married(X,Z),mother(Z,Y).
+brother(X,Y):-father(Z,X),father(Z,Y).
+grandfather(X,Y):-father_in_law(X,Z),mother(Z,Y).
+grandfather(X,Y):-grandfather(X,Z),brother(Z,Y).
+
+% facts
+married(i,w).
+mother(w,d).
+mother(d,s1).
+father(f,s1).
+father(f,i).
+
+% query
+?- grandfather(i,i).
+Answer: Yes.
+
+
